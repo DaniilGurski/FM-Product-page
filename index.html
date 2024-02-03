@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Scripts -->
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
 
     <title>Document</title>
 </head>
@@ -46,7 +46,60 @@
             </div>
         </header>
 
+        <main class="main"> 
+            <div class="product-preview">
+                <img src="images/image-product-1.jpg" alt="">
 
+                <ul class="thumbnail-gallery">
+                    <li>
+                        <img src="images/image-product-1-thumbnail.jpg" alt="Product preview 1" class="thumbnail-gallery__thumbmail">
+                    </li>
+                    <li>
+                        <img src="images/image-product-2-thumbnail.jpg" alt="Product preview 2" class="thumbnail-gallery__thumbmail">
+                    </li>
+                    <li>
+                        <img src="images/image-product-3-thumbnail.jpg" alt="Product preview 3" class="thumbnail-gallery__thumbmail">
+                    </li>
+                    <li>
+                        <img src="images/image-product-4-thumbnail.jpg" alt="Product preview 4" class="thumbnail-gallery__thumbmail">
+                    </li>
+                </ul>
+            </div>
+
+            <article class="product-information">
+                <header class="product-information__header">
+                    <span class="accent-color text-uppercase">Sneakers company</span>
+                    <h1 class="fs-2xl text-capitalize"> Fall limited edition Sneakers </h1>
+                </header>
+
+                <main class="product-information__main"> 
+                    <p> 
+                        Thees low-profile sneakers are your perfect
+                        casual wear companion. Featuring a durable rubber
+                        outer sole, they'll withstand everything the 
+                        weather can offer
+                    </p>
+
+                    <span class="fs-xl" data-discount="50%" data-old-price="$250.00"> $125.00 </span>
+
+                    <div class="purchase-options">
+                        <div class="quantity-selector"> 
+                            <button>
+                                <img src="images/icon-minus.svg" alt="">
+                            </button>
+                            <span> 0 </span>
+                            <button>
+                                <img src="images/icon-plus.svg" alt="">
+                            </button>
+                        </div>
+
+                        <button class="cta-button" data-cta-type="cart">
+                            Add to cart
+                        </button>
+                    </div>
+                </main>
+            </article>
+        </main>
     </div>
 </body>
 </html>
