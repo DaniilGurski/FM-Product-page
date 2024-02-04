@@ -45,18 +45,35 @@
             </div>
         </header>
 
+        <!-- Add width 80% to main -->
         <main class="main"> 
             <div class="product-preview">
 
-                <div class="product-preview__main-preview"> 
-                    <button class="scroll-button scroll-button--previous"></button>
-                    <ul>
-                        <li><img src="images/image-product-1.jpg" alt=""></li>
-                        <li><img src="images/image-product-2.jpg" alt=""></li>
-                        <li><img src="images/image-product-3.jpg" alt=""></li>
-                        <li><img src="images/image-product-4.jpg" alt=""></li>
-                    </ul>
-                    <button class="scroll-button"></button>
+                <div class="product-carousel"> 
+                    <button class="product-carousel__button product-carousel__button--left">
+                        <!-- <img src="images/icon-previous.svg" alt=""> -->
+                    </button>
+
+                    <div class="product-carousel__track-container">
+                        <ul class="product-carousel__track">
+                            <li class="product-carousel__slide">
+                                <img class="product-carousel__image" src="images/image-product-1.jpg" alt="">
+                            </li>
+                            <li class="product-carousel__slide">
+                                <img class="product-carousel__image" src="images/image-product-2.jpg" alt="">
+                            </li>
+                            <li class="product-carousel__slide">
+                                <img class="product-carousel__image" src="images/image-product-3.jpg" alt="">
+                            </li>
+                            <li class="product-carousel__slide">
+                                <img class="product-carousel__image" src="images/image-product-4.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="product-carousel__button product-carousel__button--right">
+                        <!-- <img src="images/icon-next.svg" alt=""> -->
+                    </button>
                 </div>
 
                 <ul class="thumbnail-gallery">
