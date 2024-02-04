@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
     <!-- Scripts -->
     <!-- <script src="script.js" defer></script> -->
@@ -14,18 +14,17 @@
 </head>
 <body>
     <div class="container">
-        <header class="page-header"> 
-            <div>
-                <a href="#home" aria-label="Go to home page" class="page-header__brand">
+        <header class="primary-header"> 
+            <div class="primary-header__main">
+                <button class="primary-header__menu-button" aria-expanded="false" aria-controls="primary-navigation">
+                </button>
+
+                <a href="#home" aria-label="Go to home page" class="primary-header__brand">
                     <img src="images/logo.svg" alt="Sneakers logo">
                 </a>
                 
-                <button class="page-header__menu-button" aria-expanded="false" aria-controls="primary-navigation">
-                    <img src="images/icon-menu.svg" alt="menu">
-                </button>
-
-                <nav class="page-header__navigation">
-                    <ul class="primary-navigation" id="primary-navigation">
+                <nav class="primary-header__navigation">
+                    <ul class="primary-navigation" id="primary-navigation" data-opened="true">
                         <li><a href="#" class="primary-navigation__link">Collections</a></li>
                         <li><a href="#" class="primary-navigation__link">Men</a></li>
                         <li><a href="#" class="primary-navigation__link">Women</a></li>
@@ -48,7 +47,17 @@
 
         <main class="main"> 
             <div class="product-preview">
-                <img src="images/image-product-1.jpg" alt="">
+
+                <div class="product-preview__main-preview"> 
+                    <button class="scroll-button scroll-button--previous"></button>
+                    <ul>
+                        <li><img src="images/image-product-1.jpg" alt=""></li>
+                        <li><img src="images/image-product-2.jpg" alt=""></li>
+                        <li><img src="images/image-product-3.jpg" alt=""></li>
+                        <li><img src="images/image-product-4.jpg" alt=""></li>
+                    </ul>
+                    <button class="scroll-button"></button>
+                </div>
 
                 <ul class="thumbnail-gallery">
                     <li>
