@@ -239,42 +239,68 @@ body {
 }
 
 
-.thumbnail-gallery {
-    display: none;
+.main {
+    width: min(500px, 100%);
+    margin-inline: auto;
 }
 
 
-/* A container with scroll buttons and preview image */
-.product-preview__main-preview {
+.product-carousel {
     position: relative;
+    height: 350px;
 }
 
-.product-preview__main-preview ul{
-    display: flex;
-    overflow-x: hidden;
+
+.product-carousel__track-container {
+    position: relative;
+    height: 100%;
 }
 
-.product-preview__main-preview ul li{
 
+.product-carousel__track {
+    list-style: none;
 }
 
-.scroll-button {
+
+.product-carousel__image {
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Makes every slide stack on each other. */
+.product-carousel__slide {
     position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-
-    width: 3rem;
-    aspect-ratio: 1;
-
-    border-radius: 50%;
-    margin-inline: 1rem;
-    background: var(--clr-neutral-100) url("images/icon-next.svg") no-repeat;
-    background-position: center;
+    top: 0;
+    bottom: 0;
+    width: 100%;
 }
 
-.scroll-button--previous {
-    left: 0;
+
+.product-carousel__button {
+    
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 40px;
+    aspect-ratio: 1;
+    margin-inline: 1rem;
+
     background: var(--clr-neutral-100) url("images/icon-previous.svg") no-repeat;
     background-position: center;
+    border-radius: 50%;
+}
+
+
+.product-carousel__button--right {
+    background: var(--clr-neutral-100) url("images/icon-next.svg") no-repeat;
+    background-position: center;
+    right: 0;
+}
+
+
+.thumbnail-gallery {
+    display: none;
 }
