@@ -17,9 +17,11 @@
     --fw-regular: 400; 
     --fw-bold: 700;
     --fs-400: 2rem; 
-    --fs-300: 1.25rem;
+    --fs-300: 1.8rem;
     --fs-200: 1.125rem;
     --fs-100: 1rem;
+
+    --block-border-radius: 0.5rem;
 }
 
 /*
@@ -115,6 +117,16 @@ button {
 }
 
 
+.clr-neutral-900 {
+    color: var(--clr-neutral-900);
+}
+
+
+.clr-neutral-800 {
+    color: var(--clr-neutral-800);
+}
+
+
 .fw-regular {
     font-weight: var(--fw-regular);
 }
@@ -162,6 +174,9 @@ body {
     justify-content: space-between;
 
     padding: var(--_padding-block) var(--_padding-inline);
+    padding-bottom: 2rem;
+
+    border-bottom: 1px solid var(--clr-neutral-300);
 }
 
 
@@ -219,13 +234,15 @@ body {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-    
+        
         position: fixed;
+        z-index: 500;
+
         width: 12rem;
         min-height: 100vh;
         top: 0;
         left: 0;
-    
+
         background-color: var(--clr-neutral-100);
         list-style: none;
         font-weight: var(--fw-bold);
@@ -242,23 +259,35 @@ body {
 .main {
     width: min(500px, 100%);
     margin-inline: auto;
+    padding-block: 4rem;
+}
+
+
+/* Product carousel and carousel navigation */
+.product-preview {
+    height: 350px;
 }
 
 
 .product-carousel {
     position: relative;
-    height: 350px;
+    height: 100%;
 }
 
 
 .product-carousel__track-container {
     position: relative;
     height: 100%;
+
+    overflow-x: hidden;
 }
 
 
 .product-carousel__track {
+    height: 100%;
     list-style: none;
+    
+    transition: transform .2s ease-in-out;
 }
 
 
@@ -278,7 +307,6 @@ body {
 
 
 .product-carousel__button {
-    
     position: absolute;
     z-index: 100;
     top: 50%;
@@ -301,6 +329,173 @@ body {
 }
 
 
-.thumbnail-gallery {
+.carousel-navigation {
     display: none;
+    list-style: none;
 }
+
+
+.carousel-navigation li {
+    width: 80px;
+}
+
+
+.carousel-navigation__thumbmail {
+    border-radius: var(--block-border-radius);
+}
+
+
+/* Product information card */
+.product-information {
+    --_info-components-gap: 1.3rem;
+
+    margin-inline: 1.5rem;
+    padding-block: 1rem;
+}
+
+
+.product-information__header{
+    display: grid;
+    gap: var(--_info-components-gap)
+}
+
+
+.product-information__main {
+    display: grid;
+    gap: var(--_info-components-gap);
+
+    margin-top: 1rem;
+}
+
+
+.product-information__price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.product-information__price {
+    display: flex;
+    align-items: center;
+    gap: var(--_info-components-gap)
+}
+
+
+.product-information__price::after {
+    content: attr(data-discount);
+
+    font-size: var(--fs-100);
+    color: var(--clr-accent);
+    background-color: var(--clr-primary-100);
+    border-radius: var(--block-border-radius);
+
+    padding: 0.3rem 0.6rem;
+}
+
+
+.product-information__original-price {
+    color: var(--clr-neutral-300);
+}
+
+
+/* Product purchase options */
+.purchase-options {
+    display: grid;
+    gap: var(--_info-components-gap);
+}
+
+
+.quantity-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--clr-neutral-150);
+    color: var(--clr-neutral-800);
+
+    padding: 1rem 2rem;
+    border-radius: var(--block-border-radius);
+}
+
+
+.cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    
+    font-weight: var(--fw-bold);
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-accent);
+
+    border-radius: var(--block-border-radius);
+    padding: 1rem 2rem;
+
+    cursor: pointer;
+
+}
+
+
+.cta-button__icon {
+    width: auto;
+}
+
+
+@media (min-width: 940px) {
+    .main {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        width: min(1000px, 90%)
+    }
+
+
+    .product-preview {
+        display: grid;
+        gap: 1rem;
+
+        height: auto;
+        width: 400px;
+        aspect-ratio: 1;
+
+    } 
+
+
+    .product-carousel {
+        height: 350px;
+    }
+
+
+    .product-carousel__track-container {
+        border-radius: var(--block-border-radius);
+    }
+
+
+    .product-carousel__button {
+        display: none;
+    }
+
+
+    .carousel-navigation {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .product-information {
+        width: 40%;
+    }
+
+
+    .product-information__price-container {
+        display: grid;
+    }
+    
+    
+    .purchase-options {
+        grid-template-columns: 1fr 1fr;
+    }   
+}
+
