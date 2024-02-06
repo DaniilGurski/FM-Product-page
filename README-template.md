@@ -95,7 +95,10 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ### Useful resources
 
-- [Kevin Powell](https://www.youtube.com/watch?v=HbBMp6yUXO0) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+- [Kevin Powell](https://www.youtube.com/@KevinPowell) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+https://www.youtube.com/watch?v=HbBMp6yUXO0 - Responisve navbar
+https://www.youtube.com/watch?v=gBzsE0oieio - Carousel logic 
+
 
 **Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
