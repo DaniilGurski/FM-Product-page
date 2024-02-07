@@ -335,13 +335,29 @@ body {
 }
 
 
-.carousel-navigation li {
+.carousel-navigation__item {
+    position: relative;
     width: 80px;
+
+    border-radius: var(--block-border-radius);
+    
+    overflow: hidden;
+    cursor: pointer;
 }
 
 
-.carousel-navigation__thumbmail {
-    border-radius: var(--block-border-radius);
+.carousel-navigation__item--selected {
+    outline: 2px solid var(--clr-accent);
+}
+
+
+.carousel-navigation__item--selected::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-color: var(--clr-neutral-150);
+    opacity: 0.8;
 }
 
 
@@ -433,7 +449,6 @@ body {
     padding: 1rem 2rem;
 
     cursor: pointer;
-
 }
 
 

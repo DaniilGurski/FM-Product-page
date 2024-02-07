@@ -2,6 +2,8 @@ const track = document.querySelector(".product-carousel__track") // <ul> element
 const slides = Array.from(track.children);
 const nextButton = document.querySelector("#carousel-next-button")
 const prevButton = document.querySelector("#carousel-prev-button")
+const carouselNav = document.querySelector(".carousel-navigation")
+const carouselNavItems = Array.from(carouselNav.children)
 
 const slideWidth= slides[0].getBoundingClientRect().width; 
 
@@ -25,19 +27,38 @@ const moveToSlide = (track, currentSlide, targetSlide) => {
 slides.forEach(setSlidePosition);
 
 
-// when I click left, move slides to the left
+// When I click left, move slides to the left
 prevButton.addEventListener("click", e => {
     const currentSlide = track.querySelector("[data-current-slide]")
     const prevSlide = currentSlide.previousElementSibling;
-
+    
     moveToSlide(track, currentSlide, prevSlide);
 })
 
 
-// when I click right, move to the right
+// When I click right, move to the right
 nextButton.addEventListener("click", e => {
     const currentSlide = track.querySelector("[data-current-slide]")
     const nextSlide = currentSlide.nextElementSibling;
-
+    
     moveToSlide(track, currentSlide, nextSlide)
+})
+
+
+// Toggle between carousel navigation items
+const toggleCarouselNavItems = e => {
+    console.log(item)
+}
+
+
+carouselNav.addEventListener("click", e => {
+    const selectedItem = e.target.closest(".carousel-navigation__item");
+
+    if (!selectedItem) {
+        return;
+    }
+
+    for (let carouselNavItem of carouselNavItems) {
+        carouselNavItem.classList.toggle("carousel-navigation__item--selected", carouselNavItem === selectedItem)
+    }
 })
