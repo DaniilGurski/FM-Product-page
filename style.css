@@ -159,6 +159,7 @@ button {
 
 /* General styling */
 body {
+    position: relative;
     font-family: var(--ff-primary);
     color: var(--clr-default);
 }
@@ -265,7 +266,25 @@ body {
 
 /* Product carousel and carousel navigation */
 .product-preview {
+    position: relative;
     height: 350px;
+}
+
+
+.product-carousel__close-lightbox-btn {
+    display: none;
+        
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 40px; 
+    aspect-ratio: 1;
+    z-index: 1000;
+}
+
+
+.product-carousel__close-icon {
+    width: auto;
 }
 
 
@@ -319,6 +338,8 @@ body {
     background: var(--clr-neutral-100) url("images/icon-previous.svg") no-repeat;
     background-position: center;
     border-radius: 50%;
+
+    cursor: pointer;
 }
 
 
@@ -336,8 +357,9 @@ body {
 
 
 .carousel-navigation__item {
+    --_nav-item-size: var(--nav-item-size, 80px);
     position: relative;
-    width: 80px;
+    width: var(--_nav-item-size);
 
     border-radius: var(--block-border-radius);
     
@@ -514,3 +536,46 @@ body {
     }   
 }
 
+
+.product-preview--lightbox {
+    --lightbox-background: hsl(0, 0%, 0%, 75%);
+    display: grid;
+    place-content: center;
+    place-items: center;
+
+    position: fixed;
+    top:0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+
+    background: var(--lightbox-background);
+}
+
+
+.product-preview--lightbox .product-carousel__close-lightbox-btn {
+    display: grid;
+    place-items: center;
+}
+
+
+.product-preview--lightbox .product-carousel {
+    width: 450px;
+    height: 400px;
+}
+
+
+.product-preview--lightbox .product-carousel__button {
+    display: block;
+    margin-inline: -1rem;
+}
+
+
+.product-preview--lightbox .carousel-navigation {
+    gap: 1rem;
+}
+
+
+.product-preview--lightbox .carousel-navigation__item {
+    --nav-item-size: 60px;
+}
