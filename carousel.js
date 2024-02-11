@@ -1,79 +1,83 @@
-const track = document.querySelector(".product-carousel__track"); // <ul> element
-const slides = Array.from(track.children);
-const nextButton = document.querySelector("#carousel-next-button");
-const prevButton = document.querySelector("#carousel-prev-button");
-const carouselNav = document.querySelector(".carousel-navigation");
-const carouselNavItems = Array.from(carouselNav.children);
-const navItemsMap = new Map();
-
-const slideWidth= slides[0].getBoundingClientRect().width; 
-
-
-const moveToSlide = (track, currentSlide, targetSlide) => {
-    // If there is no slide to move to 
-    if (targetSlide === null) {
-        return
+class Carousel {
+    constructor(carouselContainer) {
+        this.container = carouselContainer;
+        this.track = this.container.querySelector(".product-carousel__track");
+        this.slides = Array.from(this.track.children);
+        this.nextBtn = this.container.querySelector("#carousel-next-button");
+        this.prevBtn = this.container.querySelector("#carousel-prev-button");
+        this.nav = this.container.querySelector(".carousel-navigation");
+        this.navItems = Array.from(this.nav.children);
+        this.navItemsMap = new Map();
+        this.slideWidth = this.slides[0].getBoundingClientRect().width;
+        this.slides.forEach(this.setSlidePosition.bind(this));
+        this.navItems.forEach(this.linkNavItems.bind(this));
+        this.nextBtn.addEventListener("click", this.moveNext.bind(this));
+        this.prevBtn.addEventListener("click", this.movePrev.bind(this));
+        this.nav.addEventListener("click", this.toggleBetweenItems.bind(this));
     }
     
-    track.style.transform = `translateX(-${targetSlide.style.left})`;
-    currentSlide.removeAttribute("data-current-slide");
-    targetSlide.setAttribute("data-current-slide", "")
-}
-
-
-// Arrange the slides next to one another
-const setSlidePosition = (slide, index) => {
-    slide.style.left = `${slideWidth * index}px`;
-}
-
-slides.forEach(setSlidePosition);
-
-
-// When I click left, move slides to the left
-prevButton.addEventListener("click", e => {
-    const currentSlide = track.querySelector("[data-current-slide]")
-    const prevSlide = currentSlide.previousElementSibling;
-    
-    moveToSlide(track, currentSlide, prevSlide);
-})
-
-
-// When I click right, move to the right
-nextButton.addEventListener("click", e => {
-    const currentSlide = track.querySelector("[data-current-slide]")
-    const nextSlide = currentSlide.nextElementSibling;
-    
-    moveToSlide(track, currentSlide, nextSlide)
-})
-
-
-// Controlling the carousel with navigation
-
-// Bind each carousel nav item to a number from 1, 4.
-const linkNavItems = (item, index) => {
-    navItemsMap.set(item, (index + 1).toString())
-}
-
-carouselNavItems.forEach(linkNavItems)
-
-
-carouselNav.addEventListener("click", e => {
-    const selectedItem = e.target.closest(".carousel-navigation__item");
-    
-    if (!selectedItem) {
-        return;
+    setSlidePosition(slide, index) {
+        slide.style.left = `${this.slideWidth * index}px`;
     }
     
-    for (let carouselNavItem of carouselNavItems) {
-        carouselNavItem.classList.toggle("carousel-navigation__item--selected", carouselNavItem === selectedItem)
+    moveToSlide(currentSlide, targetSlide) {
+        // If there is no slide to move to 
+        if (targetSlide === null) {
+            return
+        }
+        
+        this.track.style.transform = `translateX(-${targetSlide.style.left})`;
+        currentSlide.removeAttribute("data-current-slide");
+        targetSlide.setAttribute("data-current-slide", "")
     }
+
     
-    // Use selected item as a key in the map and get slide number
-    const slideNumber = navItemsMap.get(selectedItem);
+    movePrev() {
+        const currentSlide = this.track.querySelector("[data-current-slide]");
+        const prevSlide = currentSlide.previousElementSibling;
+        
+        this.moveToSlide(currentSlide, prevSlide);
+    }
 
-    // Using the query selector we select a carousel slide with a data-slide value matching the number we got from the map
-    const currentSlide = track.querySelector("[data-current-slide]");
-    const targetSlide = track.querySelector(`.product-carousel__slide[data-slide='${slideNumber}']`);
 
-    moveToSlide(track, currentSlide, targetSlide);
-})
+    moveNext() {
+        const currentSlide = this.track.querySelector("[data-current-slide]");
+        const nextSlide = currentSlide.nextElementSibling;
+        
+        this.moveToSlide(currentSlide, nextSlide);
+    }
+
+
+    linkNavItems(item, index) {
+        this.navItemsMap.set(item, (index + 1).toString())
+    }
+
+
+    toggleBetweenItems(e) {
+        const selectedItem = e.target.closest(".carousel-navigation__item");
+    
+        if (!selectedItem) {
+            return;
+        }
+        
+        for (let carouselNavItem of this.navItems) {
+            carouselNavItem.classList.toggle("carousel-navigation__item--selected", carouselNavItem === selectedItem)
+        }
+        
+        // Use selected item as a key in the map and get slide number
+        const slideNumber = this.navItemsMap.get(selectedItem);
+    
+        // Using the query selector we select a carousel slide with a data-slide value matching the number we got from the map
+        const currentSlide = this.track.querySelector("[data-current-slide]");
+        const targetSlide = this.track.querySelector(`.product-carousel__slide[data-slide='${slideNumber}']`);
+    
+        this.moveToSlide(currentSlide, targetSlide);
+    }
+
+
+    convertToLightbox() {
+        this.container.classList.add("product-preview--lightbox");
+    }
+}
+
+export default Carousel;
