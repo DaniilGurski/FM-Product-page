@@ -9,6 +9,7 @@
 
     <!-- Scripts -->
     <script src="carousel.js" defer></script>
+    <script src="create-carousels.js" type="module" defer></script>
 
     <title>Document</title>
 </head>
@@ -25,7 +26,7 @@
                 
                 <nav class="primary-header__navigation">
                     <ul class="primary-navigation" id="primary-navigation" data-opened="true">
-                        <li><a href="#" class="primary-navigation__link">Collections</a></li>
+                        <li><a href="https://classroom.google.com/" class="primary-navigation__link">Collections</a></li>
                         <li><a href="#" class="primary-navigation__link">Men</a></li>
                         <li><a href="#" class="primary-navigation__link">Women</a></li>
                         <li><a href="#" class="primary-navigation__link">About</a></li>
@@ -48,23 +49,27 @@
         <main class="main"> 
             <!-- Product carousel and navigation for carousel -->
             <div class="product-preview">
-
+                
                 <div class="product-carousel"> 
+                    <button class="product-carousel__close-lightbox-btn" id="close-lightbox-btn" aria-label="close lightbox">
+                        <svg class="product-carousel__close-icon" width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="var(--clr-neutral-100)" fill-rule="evenodd"/></svg>
+                    </button>
+
                     <button class="product-carousel__button product-carousel__button--left" id="carousel-prev-button" aria-label="previous image">
                     </button>
 
                     <div class="product-carousel__track-container">
                         <ul class="product-carousel__track">
-                            <li class="product-carousel__slide" data-current-slide>
+                            <li class="product-carousel__slide" data-slide="1" data-current>
                                 <img class="product-carousel__image" src="images/image-product-1.jpg" alt="">
                             </li>
-                            <li class="product-carousel__slide">
+                            <li class="product-carousel__slide" data-slide="2">
                                 <img class="product-carousel__image" src="images/image-product-2.jpg" alt="">
                             </li>
-                            <li class="product-carousel__slide" >
+                            <li class="product-carousel__slide" data-slide="3">
                                 <img class="product-carousel__image" src="images/image-product-3.jpg" alt="">
                             </li>
-                            <li class="product-carousel__slide">
+                            <li class="product-carousel__slide" data-slide="4">
                                 <img class="product-carousel__image" src="images/image-product-4.jpg" alt="">
                             </li>
                         </ul>
@@ -72,7 +77,6 @@
 
                     <button class="product-carousel__button product-carousel__button--right" id="carousel-next-button" aria-label="next image">
                     </button>
-                    
                 </div>
 
                 <ul class="carousel-navigation">
@@ -140,6 +144,54 @@
                 </main>
             </article>
         </main>
+
+        <template class="product-preview-template"> 
+            <div class="product-preview">
+                <div class="product-carousel"> 
+                    <button class="product-carousel__close-lightbox-btn" id="close-lightbox-btn" aria-label="close lightbox">
+                        <svg class="product-carousel__close-icon" width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="var(--clr-neutral-100)" fill-rule="evenodd"/></svg>
+                    </button>
+
+                    <button class="product-carousel__button product-carousel__button--left" id="carousel-prev-button" aria-label="previous image">
+                    </button>
+
+                    <div class="product-carousel__track-container">
+                        <ul class="product-carousel__track">
+                            <li class="product-carousel__slide" data-slide="1" data-current>
+                                <img class="product-carousel__image" src="images/image-product-1.jpg" alt="">
+                            </li>
+                            <li class="product-carousel__slide" data-slide="2">
+                                <img class="product-carousel__image" src="images/image-product-2.jpg" alt="">
+                            </li>
+                            <li class="product-carousel__slide" data-slide="3">
+                                <img class="product-carousel__image" src="images/image-product-3.jpg" alt="">
+                            </li>
+                            <li class="product-carousel__slide" data-slide="4">
+                                <img class="product-carousel__image" src="images/image-product-4.jpg" alt="">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="product-carousel__button product-carousel__button--right" id="carousel-next-button" aria-label="next image">
+                    </button>
+                </div>
+
+                <ul class="carousel-navigation">
+                    <li class="carousel-navigation__item carousel-navigation__item--selected">
+                        <img src="images/image-product-1-thumbnail.jpg" alt="Product preview 1" class="carousel-navigation__thumbmail">
+                    </li>
+                    <li class="carousel-navigation__item">
+                        <img src="images/image-product-2-thumbnail.jpg" alt="Product preview 2" class="carousel-navigation__thumbmail">
+                    </li>
+                    <li class="carousel-navigation__item">
+                        <img src="images/image-product-3-thumbnail.jpg" alt="Product preview 3" class="carousel-navigation__thumbmail">
+                    </li>
+                    <li class="carousel-navigation__item">
+                        <img src="images/image-product-4-thumbnail.jpg" alt="Product preview 4" class="carousel-navigation__thumbmail">
+                    </li>
+                </ul>
+            </div>
+        </template>
     </div>
 </body>
 </html>

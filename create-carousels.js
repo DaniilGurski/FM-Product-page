@@ -1,31 +1,31 @@
 import Carousel from "/carousel.js"
 
-const body = document.querySelector("body");
 const desktopBreakpoint = window.matchMedia("(min-width: 940px)");
-const mainCarouselElement = document.querySelector(".product-preview");
-const lightBoxCarouselElement = mainCarouselElement.cloneNode(true); 
-const lightBoxCloseBtn = lightBoxCarouselElement.querySelector("#close-lightbox-btn");
-const closeLightbox = () => {
-    body.removeChild(lightBoxCarouselElement);
+
+const body = document.querySelector("body");
+const productPreviewTemplate = document.querySelector(".product-preview-template").content;
+
+const mainCarouselElement = body.querySelector(".product-preview");
+const largePreview = mainCarouselElement.querySelector(".product-carousel");
+const mainCarouselClass = new Carousel(mainCarouselElement);
+
+const closeLightbox = (e) => {
+    const lightbox = e.currentTarget;
+    const closeBtn = lightbox.querySelector("#close-lightbox-btn");
+
+    if (e.target.matches(".product-preview") || e.target.parentElement === closeBtn) {
+        lightbox.remove();
+    }
 }
 
-const mainCarousel = new Carousel(mainCarouselElement);
-lightBoxCarouselElement.classList.add("product-preview--lightbox");
-
-
-lightBoxCarouselElement.addEventListener("click", (e) => {
-    if (e.target.matches(".product-preview") || e.target.matches("#close-lightbox-btn")) {
-        closeLightbox();
-    }
+largePreview.addEventListener("click", () => {
+    const lightboxCarouselElement = productPreviewTemplate.firstElementChild.cloneNode(true);
+    
+    lightboxCarouselElement.classList.add("product-preview--lightbox")
+    body.appendChild(lightboxCarouselElement);
+    const lightBoxClass = new Carousel(lightboxCarouselElement);
+    const closeBtn = lightboxCarouselElement.querySelector("#close-lightbox-btn");
+    
+    lightboxCarouselElement.addEventListener("click", closeLightbox)
 })
-
-mainCarouselElement.querySelector(".product-carousel").addEventListener("click", () => {
-    if (!desktopBreakpoint.matches) {
-        return;
-    }
-
-    body.insertAdjacentElement("afterbegin", lightBoxCarouselElement);
-    const lightboxCarousel = new Carousel(lightBoxCarouselElement);
-})
-
 
