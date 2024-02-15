@@ -26,19 +26,50 @@
                 
                 <nav class="primary-header__navigation">
                     <ul class="primary-navigation" id="primary-navigation" data-opened="true">
-                        <li><a href="https://classroom.google.com/" class="primary-navigation__link">Collections</a></li>
-                        <li><a href="#" class="primary-navigation__link">Men</a></li>
-                        <li><a href="#" class="primary-navigation__link">Women</a></li>
-                        <li><a href="#" class="primary-navigation__link">About</a></li>
-                        <li><a href="#" class="primary-navigation__link">Contact</a></li>
+                        <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Collections</a></li>
+                        <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Men</a></li>
+                        <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Women</a></li>
+                        <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">About</a></li>
+                        <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Contact</a></li>
                     </ul>
                 </nav>
             </div>
 
             <div class="profile-actions"> 
-                <button class="profile-actions__basket" aria-label="Your product basket">
-                    <img src="images/icon-cart.svg" alt="">
-                </button>
+                <div class="profile-cart"> 
+                    <button class="profile-cart__cart-btn" aria-label="Your product cart">
+                        <img src="images/icon-cart.svg" alt="">
+                    </button>
+
+                    <div class="profile-cart__products"> 
+                        <header class="profile-cart__header">
+                            <span class="clr-neutral-800 fw-bold">Cart</span>
+                        </header>
+
+                        <main class="profile-cart__main">
+                            <span class="profile-cart__empty-message"> Your cart is empty </span>
+
+                            <div class="product-item flex">
+                                <img class="product-item__icon" src="images/image-product-1-thumbnail.jpg" alt="">
+
+                                <div class="product-item__info flex">
+                                    <!-- text -->
+                                    <div>
+                                        <span> Fall Limited Edition Sneakers </span>
+
+                                        <p class="product-item__price"> 
+                                            $125.00 x 3 <span class="product-item__price">$375.00</span> 
+                                        </p>
+                                    </div>
+
+                                    <button class="product-item__remove-btn">
+                                        <img src="images/icon-delete.svg" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
 
                 <a href="#" class="profile-actions__profile" aria-label="Profile">
                     <img src="images/image-avatar.png" alt="">

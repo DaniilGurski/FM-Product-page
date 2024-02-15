@@ -157,6 +157,11 @@ button {
 }
 
 
+.flex {
+    display: flex;
+}
+
+
 /* General styling */
 body {
     position: relative;
@@ -166,16 +171,17 @@ body {
 
 
 .primary-header {
-    --_padding-block: 1.5rem;
+    --_padding-block: 2.5rem;
     --_padding-inline: 2rem;
     --_item-gap: 1.5rem;
 
+    position: relative;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: var(--_padding-block) var(--_padding-inline);
-    padding-bottom: 2rem;
+    padding: var(--_padding-inline) var(--_padding-block);
 
     border-bottom: 1px solid var(--clr-neutral-300);
 }
@@ -184,6 +190,7 @@ body {
 /* Logo and primary navigation */
 .primary-header__main {
     display: flex;
+    align-items: center;
     gap: 2rem;
 }
 
@@ -208,9 +215,74 @@ body {
 }
 
 
+/* Cart and profile */ 
 .profile-actions {
     display: flex;
     gap: var(--_item-gap);
+}
+
+
+/* Cart container */ 
+.profile-cart {
+    display: grid;
+}
+
+
+/* Product list container */ 
+.profile-cart__products {
+    --_padding: 2rem;
+
+    position: fixed;
+    z-index: 1000;
+    width: 95%;
+    left: 50%;
+    top: 7rem;
+    transform: translateX(-50%);
+    
+    background-color: var(--clr-neutral-100);
+    color: var(--clr-neutral-800);
+    box-shadow: 0px 1px 3px var(--clr-neutral-300);
+
+    border-radius: 1rem;
+}
+
+
+.profile-cart__header {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--clr-neutral-300);
+}
+
+
+/* All products */
+.profile-cart__main {
+    display: grid;
+    place-items: center;
+    height: min(30vh, 300px);
+}
+
+
+.profile-cart__empty-message {
+    display: none;
+}
+
+
+.product-item {
+    --_gap: 1rem;
+
+    align-items: center;
+    gap: var(--_gap);
+}
+
+
+.product-item__icon {
+    width: 80px;
+    border-radius: 0.8rem;
+}
+
+
+/* Product title, price */
+.product-item__info {
+    gap: var(--_gap)
 }
 
 
@@ -260,7 +332,6 @@ body {
 .main {
     width: min(500px, 100%);
     margin-inline: auto;
-    padding-block: 4rem;
 }
 
 
@@ -268,6 +339,11 @@ body {
 .product-preview {
     position: relative;
     height: 350px;
+}
+
+
+.product-carousel {
+    cursor: pointer;
 }
 
 
@@ -280,6 +356,8 @@ body {
     width: 40px; 
     aspect-ratio: 1;
     z-index: 1000;
+
+    cursor: pointer;
 }
 
 
@@ -484,6 +562,7 @@ body {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        padding-block: 4rem;
 
         width: min(1000px, 90%)
     }
