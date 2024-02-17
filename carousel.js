@@ -20,8 +20,20 @@ class Carousel {
     setSlidePosition(slide, index) {
         slide.style.left = `${this.slideWidth * index}px`;
     }
+
     
+    markSelectedNavItem(selectedItem) {
+        for (let navItem of this.navItems) {
+            navItem.classList.toggle("carousel-navigation__item--selected", navItem === selectedItem);
+        }
+    }
+
+
+    getCurrentSlide() {
+        return this.slides.filter((slide) => slide.hasAttribute("data-current"))[0];
+    }
     
+
     moveToSlide(currentSlide, targetSlide) {
         // If there is no slide to move to 
         if (targetSlide === null) {
@@ -33,11 +45,6 @@ class Carousel {
         targetSlide.setAttribute("data-current", "");
 
         this.markSelectedNavItem(this.navItems[this.slides.indexOf(targetSlide)]);
-    }
-
-
-    getCurrentSlide() {
-        return this.slides.filter((slide) => slide.hasAttribute("data-current"))[0];
     }
 
     
@@ -57,13 +64,6 @@ class Carousel {
     }
     
 
-    markSelectedNavItem(selectedItem) {
-        for (let navItem of this.navItems) {
-            navItem.classList.toggle("carousel-navigation__item--selected", navItem === selectedItem);
-        }
-    }
-    
-
     handleNavClick(e) {
         const selectedItem = e.target.closest(".carousel-navigation__item");
         
@@ -76,7 +76,7 @@ class Carousel {
 
         this.moveToSlide(currentSlide, targetSlide)
     }
-    
+
 
     convertToLightbox() {
         this.container.classList.add("product-preview--lightbox");
