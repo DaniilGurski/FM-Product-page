@@ -1,4 +1,4 @@
-import Carousel from "/carousel.js"
+import Carousel from "./carousel.js"
 
 const desktopBreakpoint = window.matchMedia("(min-width: 940px)");
 
@@ -11,14 +11,21 @@ const mainCarouselClass = new Carousel(mainCarouselElement);
 
 const closeLightbox = (e) => {
     const lightbox = e.currentTarget;
-    const closeBtn = lightbox.querySelector("#close-lightbox-btn");
 
-    if (e.target.matches(".product-preview") || e.target.parentElement === closeBtn) {
+    if (e.target.matches(".product-preview") || e.target.closest("#close-lightbox-btn")) {
         lightbox.remove();
     }
 }
 
+
+// Отобразить lightbox при нажатии на большое psreview продукта в main
 largePreview.addEventListener("click", () => {
+
+    // Разрешить lightbox только на desktop устройствах. 
+    if (!desktopBreakpoint.matches) {
+        return
+    }
+
     const lightboxCarouselElement = productPreviewTemplate.firstElementChild.cloneNode(true);
     
     lightboxCarouselElement.classList.add("product-preview--lightbox")

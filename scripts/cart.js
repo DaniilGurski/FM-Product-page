@@ -1,3 +1,5 @@
+
+const profileCartContainer = document.querySelector(".profile-cart") // contains all cart elements
 const profileCartBtn = document.querySelector("#profile-cart-btn");
 const productListContainer = document.querySelector("#product-list-container");
 const productList = document.querySelector("#product-list");
@@ -8,7 +10,7 @@ const productItemTemplate = document.querySelector(".product-item-template");
 const productInformation = document.querySelector("#product-information");
 
 const toggleProductList = () => {
-    productListContainer.classList.toggle("hidden")
+    productListContainer.classList.toggle("hidden");
 }
 
 
@@ -67,7 +69,7 @@ quantitySelector.addEventListener("click", (e) => {
 
 // Отображает либо напись к пустой карзине либо включает кнопку checkout
 function toggleCartState() {
-    productList.dataset.empty = !(productList.querySelector(".product-item"));
+    profileCartContainer.dataset.empty = !(productList.querySelector(".product-item"));
 }
 
 
@@ -80,6 +82,10 @@ function addProductToList(item) {
     }
 
     productList.insertBefore(item, productList.firstChild);
+
+    // Для отображения количества продуктов в псевдоэлементе profile-cart кнопки.
+    profileCartBtn.dataset.productAmount = productList.querySelectorAll(".product-item").length;
+    
     toggleCartState();
 }
 
