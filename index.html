@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Scripts -->
-    <script src="carousel.js"></script>
-    <script src="create-carousels.js" type="module" defer></script>
-    <script src="cart.js" defer></script>
+    <script src="scripts/carousel.js"></script>
+    <script src="scripts/create-carousels.js" type="module" defer></script>
+    <script src="scripts/cart.js" defer></script>
+    <script src="scripts/mobile-menu.js" defer></script>
 
     <title>Document</title>
 </head>
@@ -18,7 +19,7 @@
     <div class="container">
         <header class="primary-header"> 
             <div class="primary-header__main">
-                <button class="primary-header__menu-button" aria-expanded="false" aria-controls="primary-navigation">
+                <button class="primary-header__menu-button" id="menu-btn" aria-expanded="false" aria-controls="primary-navigation" aria-label="open menu">
                 </button>
 
                 <a href="#home" aria-label="Go to home page" class="primary-header__brand">
@@ -26,7 +27,7 @@
                 </a>
                 
                 <nav class="primary-header__navigation">
-                    <ul class="primary-navigation" id="primary-navigation" data-opened="true">
+                    <ul class="primary-navigation" id="primary-navigation" data-opened="false">
                         <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Collections</a></li>
                         <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Men</a></li>
                         <li class="primary-navigation__item"><a href="#" class="primary-navigation__link">Women</a></li>
@@ -37,8 +38,8 @@
             </div>
 
             <div class="profile-actions"> 
-                <div class="profile-cart"> 
-                    <button class="profile-cart__cart-btn" aria-label="Your product cart" id="profile-cart-btn">
+                <div class="profile-cart" data-empty="true"> 
+                    <button class="profile-cart__cart-btn" aria-label="Your product cart" id="profile-cart-btn" data-product-amount="0">
                         <img src="images/icon-cart.svg" alt="">
                     </button>
 
@@ -47,7 +48,7 @@
                             <span class="clr-neutral-800 fw-bold">Cart</span>
                         </header>
 
-                        <main class="profile-cart__main" data-empty="true" id="product-list">
+                        <main class="profile-cart__main" id="product-list">
                             <span class="profile-cart__empty-message fw-bold clr-neutral-600"> Your cart is empty </span>
 
                             <button class="cta-button profile-cart__checkout-btn"> Checkout </button>
@@ -63,53 +64,58 @@
 
         <main class="main"> 
             <!-- Product carousel and navigation for carousel -->
-            <div class="product-preview">
+            <div class="product-preview" role="region" aria-label="product carousel">
                 
                 <div class="product-carousel"> 
+
+                    <!-- Close button (for lightboxes)-->
                     <button class="product-carousel__close-lightbox-btn" id="close-lightbox-btn" aria-label="close lightbox">
                         <svg class="product-carousel__close-icon" width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="var(--clr-neutral-100)" fill-rule="evenodd"/></svg>
                     </button>
 
+                    <!-- Go to previous slide btn -->
                     <button class="product-carousel__button product-carousel__button--left" id="carousel-prev-button" aria-label="previous image">
                     </button>
 
+                    <!-- Carousel track / slides -->
                     <div class="product-carousel__track-container">
                         <ul class="product-carousel__track">
-                            <li class="product-carousel__slide" data-slide="1" data-current>
-                                <img class="product-carousel__image" src="images/image-product-1.jpg" alt="">
+                            <li class="product-carousel__slide" aria-label="Product preview 1" data-slide="1" data-current>
+                                <img class="product-carousel__image" src="images/image-product-1.jpg" alt="white and light brown sneakers standing against an orange background">
                             </li>
-                            <li class="product-carousel__slide" data-slide="2">
-                                <img class="product-carousel__image" src="images/image-product-2.jpg" alt="">
+                            <li class="product-carousel__slide" aria-label="Product preview 2" data-slide="2">
+                                <img class="product-carousel__image" src="images/image-product-2.jpg" alt="A view of the sneakers with a branch in front">
                             </li>
-                            <li class="product-carousel__slide" data-slide="3">
-                                <img class="product-carousel__image" src="images/image-product-3.jpg" alt="">
+                            <li class="product-carousel__slide" aria-label="Product preview 3" data-slide="3">
+                                <img class="product-carousel__image" src="images/image-product-3.jpg" alt="Sneakers standing on a small pile of pebbles">
                             </li>
-                            <li class="product-carousel__slide" data-slide="4">
-                                <img class="product-carousel__image" src="images/image-product-4.jpg" alt="">
+                            <li class="product-carousel__slide" aria-label="Product preview 4" data-slide="4">
+                                <img class="product-carousel__image" src="images/image-product-4.jpg" alt="One shoe is standing on a rock and half in the air">
                             </li>
                         </ul>
                     </div>
 
+                    <!-- Go to next slide btn-->
                     <button class="product-carousel__button product-carousel__button--right" id="carousel-next-button" aria-label="next image">
                     </button>
                 </div>
 
+                <!-- Carousel navigaiton -->
                 <ul class="carousel-navigation">
-                    <li class="carousel-navigation__item carousel-navigation__item--selected">
+                    <li class="carousel-navigation__item carousel-navigation__item--selected" aria-label="carousel navigation item 1">
                         <img src="images/image-product-1-thumbnail.jpg" alt="Product preview 1" class="carousel-navigation__thumbmail">
                     </li>
-                    <li class="carousel-navigation__item">
+                    <li class="carousel-navigation__item" aria-label="carousel navigation item 1">
                         <img src="images/image-product-2-thumbnail.jpg" alt="Product preview 2" class="carousel-navigation__thumbmail">
                     </li>
-                    <li class="carousel-navigation__item">
+                    <li class="carousel-navigation__item" aria-label="carousel navigation item 1">
                         <img src="images/image-product-3-thumbnail.jpg" alt="Product preview 3" class="carousel-navigation__thumbmail">
                     </li>
-                    <li class="carousel-navigation__item">
+                    <li class="carousel-navigation__item" aria-label="carousel navigation item 1">
                         <img src="images/image-product-4-thumbnail.jpg" alt="Product preview 4" class="carousel-navigation__thumbmail">
                     </li>
                 </ul>
             </div>
-
 
             <!-- Product information card -->
             <article class="product-information" id="product-information">
@@ -136,11 +142,11 @@
 
                     <div class="purchase-options">
                         <div class="quantity-selector fw-bold" id=quantity-selector data-quantity="1"> 
-                            <button class="quantity-selector__button" id="decrease-quantity">
+                            <button class="quantity-selector__button" id="decrease-quantity" aria-label="decrease product quantity">
                                 <img src="images/icon-minus.svg" alt="">
                             </button>
-                            <span id="quantity-display"> 1 </span>
-                            <button class="quantity-selector__button" id="increase-quantity">
+                            <span id="quantity-display" aria-live="polite"> 1 </span>
+                            <button class="quantity-selector__button" id="increase-quantity" aria-label="increase product quantity">
                                 <img src="images/icon-plus.svg" alt="">
                             </button>
                         </div>
@@ -157,16 +163,20 @@
             </article>
         </main>
 
-        <template class="product-preview-template"> 
+        <template class="product-preview-template" role="region" aria-label="product carousel"> 
             <div class="product-preview">
                 <div class="product-carousel"> 
+
+                    <!-- Close button (for lightboxes)-->
                     <button class="product-carousel__close-lightbox-btn" id="close-lightbox-btn" aria-label="close lightbox">
                         <svg class="product-carousel__close-icon" width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="var(--clr-neutral-100)" fill-rule="evenodd"/></svg>
                     </button>
 
+                    <!-- Go to previous slide btn -->
                     <button class="product-carousel__button product-carousel__button--left" id="carousel-prev-button" aria-label="previous image">
                     </button>
 
+                    <!-- Carousel track / slides -->
                     <div class="product-carousel__track-container">
                         <ul class="product-carousel__track">
                             <li class="product-carousel__slide" data-slide="1" data-current>
@@ -184,10 +194,12 @@
                         </ul>
                     </div>
 
+                    <!-- Go to next slide btn-->
                     <button class="product-carousel__button product-carousel__button--right" id="carousel-next-button" aria-label="next image">
                     </button>
                 </div>
 
+                <!-- Carousel navigation -->
                 <ul class="carousel-navigation">
                     <li class="carousel-navigation__item carousel-navigation__item--selected">
                         <img src="images/image-product-1-thumbnail.jpg" alt="Product preview 1" class="carousel-navigation__thumbmail">

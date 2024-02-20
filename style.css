@@ -226,8 +226,17 @@ body {
 
 
 .primary-navigation__link {
+    
     display: grid;
     padding-block: var(--_padding-block);
+}
+
+
+.primary-navigation__link:hover {
+    border-bottom: 4px solid var(--clr-accent);
+
+    /* prevents the border from moving content */
+    margin-bottom: -4px;
 }
 
 
@@ -242,6 +251,30 @@ body {
 /* Cart container */ 
 .profile-cart {
     display: grid;
+}
+
+
+.profile-cart__cart-btn {
+    position: relative;
+}
+
+
+/* Number of products in the basket */
+.profile-cart[data-empty="false"] .profile-cart__cart-btn::before {
+    content: attr(data-product-amount);
+
+    display: grid;
+    place-items: center;
+    position: absolute;
+    
+    padding-inline: 1em;
+
+    font-weight: var(--fw-bold);
+    border-radius: 1rem;
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-accent);
+    top: -100%;
+    right: -100%;
 }
 
 
@@ -280,6 +313,16 @@ body {
 }
 
 
+.profile-cart__product-list {
+    display: grid;
+    align-items: start;
+    gap: 1rem;
+
+    height: 200px;
+    overflow-y: scroll;
+}
+
+
 .profile-cart__empty-message {
     display: none;
 }
@@ -291,12 +334,12 @@ button.profile-cart__checkout-btn {
 }
 
 
-.profile-cart__main[data-empty="true"] .profile-cart__empty-message{
+.profile-cart[data-empty="true"] .profile-cart__empty-message{
     display: block;
 }
 
 
-.profile-cart__main[data-empty="false"] .profile-cart__checkout-btn {
+.profile-cart[data-empty="false"] .profile-cart__checkout-btn {
     display: block;
 }
 
@@ -323,6 +366,12 @@ button.profile-cart__checkout-btn {
 
 .profile-actions__profile {
     width: 2.5rem;
+}
+
+
+.profile-actions__profile:hover {
+    outline: 3px solid var(--clr-accent);
+    border-radius: 50%;
 }
 
 
@@ -443,12 +492,23 @@ button.profile-cart__checkout-btn {
 }
 
 
+.carousel-navigation__item:hover:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-color: var(--clr-neutral-150);
+    opacity: 0.4;
+}
+
+
 .carousel-navigation__item--selected {
     outline: 2px solid var(--clr-accent);
 }
 
 
-.carousel-navigation__item--selected::before {
+/* Increasing selector specifity so that the effect overrides the hover effect. */
+.carousel-navigation__item.carousel-navigation__item--selected::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -533,6 +593,7 @@ button.profile-cart__checkout-btn {
 
 
 .cta-button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -546,6 +607,16 @@ button.profile-cart__checkout-btn {
     padding: 1rem 2rem;
 
     cursor: pointer;
+}
+
+
+.cta-button:hover:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-color: var(--clr-neutral-150);
+    opacity: 0.4;
 }
 
 
@@ -575,9 +646,14 @@ button.profile-cart__checkout-btn {
         color: var(--clr-neutral-900);
     
         padding-left: var(--_padding-inline);
-        padding-top: 5rem;
+        padding-top: 8rem;
 
         transform: translateX(-100%);
+    }
+
+
+    .primary-navigation[data-opened="true"] {
+        transform: unset;
     }
 
 
