@@ -1,5 +1,4 @@
 const primaryNavigation = document.querySelector("#primary-navigation");
-console.log(primaryNavigation);
 const menuBtn = document.querySelector("#menu-btn");
 
 const toggleMenu = () => {

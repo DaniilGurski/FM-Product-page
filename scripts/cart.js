@@ -17,6 +17,12 @@ const toggleProductList = () => {
 profileCartBtn.addEventListener("click", toggleProductList);
 
 
+function updateProductCount() {
+    // To display the number of products in the profile-cart button pseudo element.
+    profileCartBtn.dataset.productAmount = productList.querySelectorAll(".product-item").length;
+}
+
+
 function ProductItem(template, name, price, quantity, thumbmail) {
     this.body = template.content.cloneNode(true);
     this.thumbmailElem = this.body.querySelector("#product-item-thumbmail");
@@ -39,13 +45,13 @@ function ProductItem(template, name, price, quantity, thumbmail) {
 }
 
 
-// Манипуляция количеством продукта
+// Manipulation of product quantity
 quantitySelector.addEventListener("click", (e) => {
     const target = e.target;
     const button = target.closest(".quantity-selector__button");
     let currentQuantity = parseInt(e.currentTarget.dataset.quantity);
 
-    //  Если обьект нажатия не кнопка
+    // If click target is NOT a button
     if (!button) {
         return;
     }
@@ -54,7 +60,7 @@ quantitySelector.addEventListener("click", (e) => {
         currentQuantity += 1;
     } else if (button.id === "decrease-quantity") {
 
-        // Не дает количеству стать ниже 1
+        // Keeps the quantity from going below 1
         if (currentQuantity === 1) {
             return
         }
@@ -67,25 +73,22 @@ quantitySelector.addEventListener("click", (e) => {
 })
 
 
-// Отображает либо напись к пустой карзине либо включает кнопку checkout
+// Displays either message for empty cart or enables the checkout button, called at every change in the cart.
 function toggleCartState() {
     profileCartContainer.dataset.empty = !(productList.querySelector(".product-item"));
+    updateProductCount();
 }
 
 
-// Получить информацию о продукте (количество, превью).
+// Get product information (quantity, preview).
 function addProductToList(item) {
 
-    // Показать карзину когда добавляешь новый предмет.
+    // Show the cart when you add a new item.
     if (productListContainer.classList.contains("hidden")) {
         productListContainer.classList.remove("hidden")
     }
 
     productList.insertBefore(item, productList.firstChild);
-
-    // Для отображения количества продуктов в псевдоэлементе profile-cart кнопки.
-    profileCartBtn.dataset.productAmount = productList.querySelectorAll(".product-item").length;
-    
     toggleCartState();
 }
 
@@ -102,5 +105,5 @@ function getProductData() {
 }
 
 
-// Зарегистрировать нажатие на #add-to-cart-btn.
+// Register a click on #add-to-cart-btn.
 addToCart.addEventListener("click", getProductData);

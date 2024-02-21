@@ -18,10 +18,10 @@ const closeLightbox = (e) => {
 }
 
 
-// Отобразить lightbox при нажатии на большое psreview продукта в main
+// Display lightbox when clicking on a large product preview in main
 largePreview.addEventListener("click", () => {
 
-    // Разрешить lightbox только на desktop устройствах. 
+    // Allow lightbox only on desktop
     if (!desktopBreakpoint.matches) {
         return
     }
