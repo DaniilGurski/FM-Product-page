@@ -32,12 +32,12 @@ Users should be able to:
 
 ![](/screenshots/page.png)
 ![](/screenshots/lightbox.png)
-![](/screenshots/mobile.png)
+![](/screenshots/mobile.jpg)
 
 
 ### Links
 
-- Solution URL:
+- Solution URL: https://www.frontendmentor.io/solutions/responsive-vanilla-solution-JvLkVcIWVz
 - Live Site URL: https://daniilgurski.github.io/FM-Product-page/
 
 ## My process
@@ -53,7 +53,6 @@ Users should be able to:
 ### What I learned
 
 One of the most major learnings from this project is the carousel component with a thumbmail navigation, and the lightbox which is basicly just the carousel but with a modifier class turning it to a lightbox. To save carousel functionality after cloning one for lightbox implementation, it was decided to make a special carousel class. (See files for more detail)
-
 
 ### Continued development
 
